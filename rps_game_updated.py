@@ -90,23 +90,22 @@ def get_ai_move(winner, human_move, variable):
         '''
         if winner == 'human':
             if human_move == 'rock':
-                next_move = 'paper'
+                return 'paper'
             elif human_move == 'paper':
-                next_move = 'scissors'
+                return 'scissors'
             elif human_move == 'scissors':
-                next_move = 'rock'
-            return next_move
+                return 'rock'
+
         elif winner == 'computer':
             if human_move == 'rock':
-                next_move = 'paper'
+                return 'paper'
             elif human_move == 'paper':
-                next_move = 'scissors'
+                return 'scissors'
             elif human_move == 'scissors':
-                next_move = 'rock'
-            return next_move
+                return 'rock'
+
         elif winner == 'tie':
-            next_move = get_computer_move()
-            return next_move
+            return get_computer_move()
 
     elif variable.get() == 'win_shift_lose_shift':
         '''
@@ -114,42 +113,42 @@ def get_ai_move(winner, human_move, variable):
         '''
         if winner == 'human':
             if human_move == 'rock':
-                next_move = 'paper'
+                return  'paper'
             elif human_move == 'paper':
-                next_move = 'scissors'
+                return 'scissors'
             elif human_move == 'scissors':
-                next_move = 'rock'
-            return next_move
+                return 'rock'
+
         elif winner == 'computer':
             if human_move == 'rock':
-                next_move = 'rock'
+                return 'rock'
             elif human_move == 'paper':
-                next_move = 'paper'
+                return 'paper'
             elif human_move == 'scissors':
-                next_move = 'scissors'
-            return next_move
+                return 'scissors'
+
         elif winner == 'tie':
             return get_computer_move()
     elif variable.get() == 'bayes_net with win shift':
         if winner == 'human':
             if human_move == 'rock':
-                next_move = 'paper'
+                return 'paper'
             elif human_move == 'paper':
-                next_move = 'scissors'
+                return 'scissors'
             elif human_move == 'scissors':
-                next_move = 'rock'
-            return next_move
+                return 'rock'
+
         elif winner == 'computer':
             if human_move == 'rock':
-                next_move = 'rock'
+                return 'rock'
             elif human_move == 'paper':
-                next_move = 'paper'
+                return 'paper'
             elif human_move == 'scissors':
-                next_move = 'scissors'
-            return next_move
+                return 'scissors'
+
         elif winner == 'tie':
-            next_move = get_computer_move()
-            return next_move
+            return get_computer_move()
+
     elif variable.get() == 'bayes_net with win stay':
         if winner == 'human':
             if human_move == 'rock':
@@ -167,43 +166,46 @@ def get_ai_move(winner, human_move, variable):
             elif human_move == 'scissors':
                 next_move = 'rock'
             return next_move
+        elif winner == 'tie':
+            return get_computer_move()
     elif variable.get() == 'naive_bayes_net with win shift':
         if winner == 'human':
             if human_move == 'rock':
-                next_move = 'paper'
+                return 'paper'
             elif human_move == 'paper':
-                next_move = 'scissors'
+                return 'scissors'
             elif human_move == 'scissors':
-                next_move = 'rock'
-            return next_move
+                return 'rock'
         elif winner == 'computer':
             if human_move == 'rock':
-                next_move = 'rock'
+                return 'rock'
             elif human_move == 'paper':
-                next_move = 'paper'
+                return 'paper'
             elif human_move == 'scissors':
-                next_move = 'scissors'
-            return next_move
+                return 'scissors'
+
+        elif winner == 'tie':
+            return get_computer_move()
     elif variable.get() == 'naive_bayes_net with win stay':
         if winner == 'human':
             if human_move == 'rock':
-                next_move = 'paper'
+                return 'paper'
             elif human_move == 'paper':
-                next_move = 'scissors'
+                return 'scissors'
             elif human_move == 'scissors':
-                next_move = 'rock'
-            return next_move
+                return 'rock'
+
         elif winner == 'computer':
             if human_move == 'rock':
-                next_move = 'paper'
+                return 'paper'
             elif human_move == 'paper':
-                next_move = 'scissors'
+                return 'scissors'
             elif human_move == 'scissors':
-                next_move = 'rock'
-            return next_move
+                return 'rock'
+
         elif winner == 'tie':
-            next_move = get_computer_move()
-            return next_move
+            return get_computer_move()
+
 
 
     
@@ -215,30 +217,29 @@ def get_bayes_net_human_move(human_move, computer_move, variable):
     '''
     if variable.get() == 'bayes_net with win stay' or variable.get() == 'bayes_net with win shift':
         '''
-        To Do: refer to assignemnt pdf for instructions. Please fill out the rest of the logic for this case and return a move to play against according to the instructions.
+        To Do: refer to assignment pdf for instructions. Please fill out the rest of the logic for this case and return 
+        a move to play against according to the instructions.
         '''
-
         pred_move = bayes_function_vdag(human_move, computer_move)
-        if pred_move == 'rock':
-            return 'paper'
-        elif pred_move == 'paper':
-            return 'scissors'
-        else:
-            return 'rock'
-
-    
+        # if pred_move == 'rock':
+        #     return get_computer_move()
+        # elif pred_move == 'paper':
+        #     return 'scissors'
+        # else:
+        #     return 'rock'
+        return pred_move
     elif variable.get() == 'naive_bayes_net with win stay' or variable.get() == 'naive_bayes_net with win shift':
         '''
         To Do: refer to assignemnt pdf for instructions
         '''
         pred_move = bayes_function_ivdag(human_move, computer_move)
-        if pred_move == 'rock':
-            return 'paper'
-        elif pred_move == 'paper':
-            return 'scissors'
-        else:
-            return 'rock'
-
+        # if pred_move == 'rock':
+        #     return get_computer_move()
+        # elif pred_move == 'paper':
+        #     return 'scissors'
+        # else:
+        #     return 'rock'
+        return pred_move
 def get_real_time_bayes_net_human_move():
     '''
     [BONUS]
@@ -402,7 +403,7 @@ def display_module(tt,variable):
         bayes_button.place(x = 330, y = 240)
         labels2.extend([round_label,select_label,bayes_button])
     elif variable.get() == 'bayes_net with win shift':
-        bayes_button = Button(Window, foreground='black', background='white', text='Get Bayes Move',command=lambda t=None: get_human_move(t, tt, variable))
+        bayes_button = Button(Window, foreground='black', background='white', text='Get Bayes Move',command=lambda t = None: get_human_move(t, tt, variable))
         bayes_button.place(x=330, y=240)
         labels2.extend([round_label, select_label, bayes_button])
     elif variable.get() == 'naive_bayes_net with win stay':
@@ -424,7 +425,8 @@ def display_module(tt,variable):
         scissors_button=Button(Window, foreground='black',background='white',text='Scissors',command= lambda t= "scissors": get_human_move(t,tt,variable))
         scissors_button.place(x = 530, y = 240)
 
-        labels2.extend([round_label,select_label,paper_button,scissors_button,rock_button])
+        labels2.extend([round_label, select_label, paper_button, scissors_button, rock_button])
+
 
 def reset_game(xx):
     '''
@@ -437,6 +439,7 @@ def reset_game(xx):
             label.destroy()
     np.array(data).dump(open('data.npy', 'wb'))
     welcome()
+
 
 def welcome():
     '''
@@ -466,7 +469,7 @@ def welcome():
                 "random"
                 ]
     variable = StringVar(Window)
-    variable.set(OPTIONS[3]) # default value random
+    variable.set(OPTIONS[6]) # default value random
     strats = OptionMenu(Window, variable, *OPTIONS)
     strats.pack()
     strats.place(x = 310,y = 60) 
@@ -476,6 +479,7 @@ def welcome():
     start_game_button=Button(Window,text='Start Playing!',command= lambda t= user_entry: playgame(t, variable))
     start_game_button.pack()
     start_game_button.place(x = 330, y = 130)
+
 
 def playgame(t, variable):
     '''
@@ -504,7 +508,7 @@ def playgame(t, variable):
     labels2 = []
     labels2.extend([nums_label, end_label])
 
-    ## Call display function to select a move
+    # Call display function to select a move
     display_module(t, variable)
 
 
