@@ -19,9 +19,11 @@ import tkinter as tk
 from tkinter import *
 import numpy as np
 from bayes_net_counting import *
-from bayes_net import bayes_strategy
+# from bayes_net_counting import bayes_strategy
 ## Uncomment the following line once you have implemented naive_bayes_net as well as the naive_bayes_strategy function
-# from naive_bayes_net import naive_bayes_strategy 
+# from naive_bayes_net import naive_bayes_strategy
+
+bys_model = BYSModel()
 
 def save_data(hm, cm):
     '''
@@ -232,14 +234,14 @@ def get_bayes_net_human_move(human_move, computer_move, variable):
         '''
         To Do: refer to assignemnt pdf for instructions
         '''
-        pred_move = bayes_function_ivdag(human_move, computer_move)
-        # if pred_move == 'rock':
-        #     return get_computer_move()
-        # elif pred_move == 'paper':
-        #     return 'scissors'
-        # else:
-        #     return 'rock'
-        return pred_move
+        predicted_Y = bys_model.bayes_function_ivdag(human_move, computer_move)
+        if predicted_Y == 'rock':
+            return 'paper'
+        elif predicted_Y == 'paper':
+            return 'scissors'
+        else:
+            return 'rock'
+        # return pred_move
 def get_real_time_bayes_net_human_move():
     '''
     [BONUS]
