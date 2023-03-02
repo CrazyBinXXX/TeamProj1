@@ -19,6 +19,7 @@ import tkinter as tk
 from tkinter import *
 import numpy as np
 from bayes_net_counting import *
+import sys
 # from bayes_net_counting import bayes_strategy
 ## Uncomment the following line once you have implemented naive_bayes_net as well as the naive_bayes_strategy function
 # from naive_bayes_net import naive_bayes_strategy
@@ -83,6 +84,7 @@ def get_computer_move():
         return 'scissors'
 
 def get_ai_move(winner, human_move, variable):
+    print("!!!")
     '''
     To Do: Implement the win-stay, lose-shift or the win-shift, lose-shift strategy
     '''
@@ -234,7 +236,8 @@ def get_bayes_net_human_move(human_move, computer_move, variable):
         '''
         To Do: refer to assignemnt pdf for instructions
         '''
-        predicted_Y = bys_model.bayes_function_ivdag(human_move, computer_move)
+        predicted_Y = bys_model.bayes_function_ivdag(human_move, computer_move, update=True)
+        print("???")
         if predicted_Y == 'rock':
             return 'paper'
         elif predicted_Y == 'paper':

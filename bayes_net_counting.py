@@ -104,26 +104,26 @@ model.bake()
 # model.fit(data)
 
 # Prints the model summary (all marginal and conditional probability distributions)
-print ("Bayesian Network Summary: {}".format(model))
+# print ("Bayesian Network Summary: {}".format(model))
 
 # Uncomment this line if you would like to predict, in this case the joint probability of (rock, paper) being the previous round moves and the next being scissors
-print (model.probability([['rock', 'paper', 'rock']]))
+# print (model.probability([['rock', 'paper', 'rock']]))
 
 # The following line returns the action that maximizes P(prediction|human_move,computer_move)
 prediction = model.predict([['rock', 'paper', None]])
-print ("Argmax_Prediction:{}".format(prediction[-1][-1]))
+# print ("Argmax_Prediction:{}".format(prediction[-1][-1]))
 
 # To generate predictions probabilities for each of the possible actions, provide as evidence "Human": "Rock" and "Computer": "Paper" to your model
 predictions = model.predict_proba({"human": "rock", "computer": "paper"})
 
 # Print prediction probabilities for each node
-for node, prediction in zip(model.states, predictions):
-    if isinstance(prediction, str):
-        print(f"{node.name}: {prediction}") ## Prints the current state (previous moves) of the Human and Computer Nodes in your Bayesian Network
-    else:
-        print(f"{node.name}")
-        for value, probability in prediction.parameters[0].items():
-            print(f"    {value}: {probability:.4f}")  ## Prints the probability for each possible action given the current state of the parents in your Bayesian Network
+# for node, prediction in zip(model.states, predictions):
+#     if isinstance(prediction, str):
+#         print(f"{node.name}: {prediction}") ## Prints the current state (previous moves) of the Human and Computer Nodes in your Bayesian Network
+#     else:
+#         print(f"{node.name}")
+#         for value, probability in prediction.parameters[0].items():
+#             print(f"    {value}: {probability:.4f}")  ## Prints the probability for each possible action given the current state of the parents in your Bayesian Network
 
 
 
@@ -240,7 +240,7 @@ class BYSModel():
         self.last_A = ""
         self.last_B = ""
 
-    def bayes_function_ivdag(self, A_move, B_move):
+    def bayes_function_ivdag(self, A_move, B_move, update=False):
         # p_s_p_B = 8. / 16
         # p_r_p_B = 6. / 16
         # p_p_p_B = 2. / 16
@@ -288,16 +288,19 @@ class BYSModel():
 
         rps_dict = {"rock": 0, "paper": 1, "scissors": 2}
 
-        if len(self.last_A) > 0:
-            A = self.last_A
-            B = self.last_B
-            Y = A_move
-            self.count_Y[rps_dict[Y]] += 1
-            self.count_A_Y[rps_dict[Y]][rps_dict[A]] += 1
-            self.count_B_Y[rps_dict[Y]][rps_dict[B]] += 1
-        else:
-            self.last_A = A_move
-            self.last_B = B_move
+        if update:
+            if len(self.last_A) > 0:
+                A = self.last_A
+                B = self.last_B
+                Y = A_move
+                self.count_Y[rps_dict[Y]] += 1
+                self.count_A_Y[rps_dict[Y]][rps_dict[A]] += 1
+                self.count_B_Y[rps_dict[Y]][rps_dict[B]] += 1
+            else:
+                self.last_A = A_move
+                self.last_B = B_move
+
+        print(self.count_Y)
 
         if A_move == 'rock' and B_move == 'rock':
             prob1 = p_r * p_r_r_A * p_r_r_B
