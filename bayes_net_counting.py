@@ -292,15 +292,17 @@ class BYSModel():
             if len(self.last_A) > 0:
                 A = self.last_A
                 B = self.last_B
+                print(A, B)
                 Y = A_move
-                self.count_Y[rps_dict[Y]] += 2
-                self.count_A_Y[rps_dict[Y]][rps_dict[A]] += 2
-                self.count_B_Y[rps_dict[Y]][rps_dict[B]] += 2
-            else:
-                self.last_A = A_move
-                self.last_B = B_move
+                self.count_Y[rps_dict[Y]] += 3
+                self.count_A_Y[rps_dict[Y]][rps_dict[A]] += 3
+                self.count_B_Y[rps_dict[Y]][rps_dict[B]] += 3
+            self.last_A = A_move
+            self.last_B = B_move
 
         print(self.count_Y)
+        print(self.count_A_Y)
+        print(self.count_B_Y)
 
         if A_move == 'rock' and B_move == 'rock':
             prob1 = p_r * p_r_r_A * p_r_r_B

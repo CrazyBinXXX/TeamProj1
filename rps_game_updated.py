@@ -236,7 +236,7 @@ def get_bayes_net_human_move(human_move, computer_move, variable):
         '''
         To Do: refer to assignemnt pdf for instructions
         '''
-        predicted_Y = bys_model.bayes_function_ivdag(human_move, computer_move, update=True)
+        predicted_Y = bys_model.bayes_function_ivdag(computer_move, human_move, update=True)
         print("???")
         if predicted_Y == 'rock':
             return 'paper'
