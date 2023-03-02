@@ -256,11 +256,14 @@ def get_human_move(human_move, tt, variable):
     """
     returns a valid move from the human (rock, paper, or scissors) and updates the scores and returns a winner
     """
+    print("???????")
+    print(variable.get())
 
     global continue_playing_button
     global last_round_human_move
     global last_round_winner
     global last_round_computer_move
+    global count
 
     # Get computer move
     if variable.get() == 'random':

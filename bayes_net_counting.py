@@ -293,9 +293,9 @@ class BYSModel():
                 A = self.last_A
                 B = self.last_B
                 Y = A_move
-                self.count_Y[rps_dict[Y]] += 1
-                self.count_A_Y[rps_dict[Y]][rps_dict[A]] += 1
-                self.count_B_Y[rps_dict[Y]][rps_dict[B]] += 1
+                self.count_Y[rps_dict[Y]] += 2
+                self.count_A_Y[rps_dict[Y]][rps_dict[A]] += 2
+                self.count_B_Y[rps_dict[Y]][rps_dict[B]] += 2
             else:
                 self.last_A = A_move
                 self.last_B = B_move
@@ -306,6 +306,7 @@ class BYSModel():
             prob1 = p_r * p_r_r_A * p_r_r_B
             prob2 = p_p * p_r_p_A * p_r_p_B
             prob3 = p_s * p_r_s_A * p_r_s_B
+            print(prob1, prob2, prob3)
             if max(prob1, prob2, prob3) == prob1:
                 return 'rock'
             elif max(prob1, prob2, prob3) == prob2:
@@ -316,6 +317,7 @@ class BYSModel():
             prob1 = p_r * p_r_r_A * p_p_r_B
             prob2 = p_p * p_r_p_A * p_p_p_B
             prob3 = p_s * p_r_s_A * p_p_s_B
+            print(prob1, prob2, prob3)
             if max(prob1, prob2, prob3) == prob1:
                 return 'rock'
             elif max(prob1, prob2, prob3) == prob2:
@@ -326,6 +328,7 @@ class BYSModel():
             prob1 = p_r * p_r_r_A * p_s_r_B
             prob2 = p_p * p_r_p_A * p_s_p_B
             prob3 = p_s * p_r_s_A * p_s_s_B
+            print(prob1, prob2, prob3)
             if max(prob1, prob2, prob3) == prob1:
                 return 'rock'
             elif max(prob1, prob2, prob3) == prob2:
@@ -336,6 +339,7 @@ class BYSModel():
             prob1 = p_r * p_p_r_A * p_p_r_B
             prob2 = p_p * p_p_p_A * p_p_p_B
             prob3 = p_s * p_p_s_A * p_p_s_B
+            print(prob1, prob2, prob3)
             if max(prob1, prob2, prob3) == prob1:
                 return 'rock'
             elif max(prob1, prob2, prob3) == prob2:
@@ -346,6 +350,7 @@ class BYSModel():
             prob1 = p_r * p_p_r_A * p_r_r_B
             prob2 = p_p * p_p_p_A * p_r_p_B
             prob3 = p_s * p_p_s_A * p_r_s_B
+            print(prob1, prob2, prob3)
             if max(prob1, prob2, prob3) == prob1:
                 return 'rock'
             elif max(prob1, prob2, prob3) == prob2:
@@ -356,6 +361,7 @@ class BYSModel():
             prob1 = p_r * p_p_r_A * p_s_r_B
             prob2 = p_p * p_p_p_A * p_s_p_B
             prob3 = p_s * p_p_s_A * p_s_s_B
+            print(prob1, prob2, prob3)
             if max(prob1, prob2, prob3) == prob1:
                 return 'rock'
             elif max(prob1, prob2, prob3) == prob2:
@@ -366,6 +372,7 @@ class BYSModel():
             prob1 = p_r * p_s_r_A * p_s_r_B
             prob2 = p_p * p_s_p_A * p_s_p_B
             prob3 = p_s * p_s_s_A * p_s_s_B
+            print(prob1, prob2, prob3)
             if max(prob1, prob2, prob3) == prob1:
                 return 'rock'
             elif max(prob1, prob2, prob3) == prob2:
@@ -376,6 +383,7 @@ class BYSModel():
             prob1 = p_r * p_s_r_A * p_p_r_B
             prob2 = p_p * p_s_p_A * p_p_p_B
             prob3 = p_s * p_s_s_A * p_p_s_B
+            print(prob1, prob2, prob3)
             if max(prob1, prob2, prob3) == prob1:
                 return 'rock'
             elif max(prob1, prob2, prob3) == prob2:
@@ -386,6 +394,7 @@ class BYSModel():
             prob1 = p_r * p_s_r_A * p_r_r_B
             prob2 = p_p * p_s_p_A * p_r_p_B
             prob3 = p_s * p_s_s_A * p_r_s_B
+            print(prob1, prob2, prob3)
             if max(prob1, prob2, prob3) == prob1:
                 return 'rock'
             elif max(prob1, prob2, prob3) == prob2:
